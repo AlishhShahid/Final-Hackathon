@@ -11,16 +11,10 @@
         "use": "@vercel/next"
       }
     ],
-    "routes": [
+    "rewrites": [
       {
-        "src": "/(.*)",
-        "dest": "/"
+        "source": "/(.*)",
+        "destination": "/"
       }
-    ],
-    "images": {
-      "domains": ["cdn.sanity.io"]
-    }
+    ]
   }
-  
-
-
