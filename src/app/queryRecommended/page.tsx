@@ -1,17 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import sanityClient from "@sanity/client";
-import Image from "next/image";
-import Link from "next/link";
-// import { BsFillFuelPumpFill } from "react-icons/bs";
-// import { GoPeople } from "react-icons/go";
-// import { FiSettings } from "react-icons/fi";
 import { recommended } from "@/sanity/lib/queries";
 import { Product } from "../../../types/carData";
 import CarCard from "../components/CarCard";
-
-
-
 
 const sanity = sanityClient({
   projectId: "a5nqv9d2",
