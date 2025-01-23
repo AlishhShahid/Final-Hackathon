@@ -1,20 +1,26 @@
 {
-  "version": 2,
-  "env": {
-    "NEXT_PUBLIC_SANITY_PROJECT_ID": "a5nqv9d2",
-    "NEXT_PUBLIC_SANITY_DATASET": "production",
-    "SANITY_API_TOKEN": "skhu71z1QC09LdSBdIf9DFS7aRRXnUhaWxLuvuWzgarQ2vxnFK2pAnqTaOMdHFTgIjp6EmdoU94tBNTYPQda7C5FlWNAU6jNtI3q3VqtWU4AlnMacrsPP2nUOVLG3eoxYictjFb0cpuJcnSLIrHRCUDfNFDsKxLoRhoDYFGWOOn7DYIw5Hz5"
-  },
-  "builds": [
-    {
-      "src": "next.config.js",
-      "use": "@vercel/next"
+    "version": 2,
+    "env": {
+      "NEXT_PUBLIC_SANITY_PROJECT_ID": "a5nqv9d2",
+      "NEXT_PUBLIC_SANITY_DATASET": "production",
+      "SANITY_API_TOKEN": "skhu71z1QC09LdSBdIf9DFS7aRRXnUhaWxLuvuWzgarQ2vxnFK2pAnqTaOMdHFTgIjp6EmdoU94tBNTYPQda7C5FlWNAU6jNtI3q3VqtWU4AlnMacrsPP2nUOVLG3eoxYictjFb0cpuJcnSLIrHRCUDfNFDsKxLoRhoDYFGWOOn7DYIw5Hz5"
+    },
+    "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@vercel/next"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
+    ],
+    "images": {
+      "domains": ["cdn.sanity.io"]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ]
-}
+  }
+  
+
+
