@@ -7,7 +7,6 @@ import {
   FiBarChart2,
   FiSettings,
   FiHelpCircle,
-  FiLogOut,
   FiMail,
   FiCalendar,
   FiMoon,
