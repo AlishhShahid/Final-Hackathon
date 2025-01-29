@@ -60,9 +60,6 @@ export default async function CarDetailPage({
 
   const car: CarDetail = carDetails[0];
 
-  // console.log("Car Details:", carDetails);
-  // console.log("Image URL:", car.imageUrl);
-
   return (
     <div>
       <div className="w-full flex">
@@ -72,6 +69,40 @@ export default async function CarDetailPage({
 
         <div className="sec w-full sm:w-[75%] bg-[#f6f7f9] p-4 sm:p-6 flex flex-col gap-10 font-[family-name:var(--font-geist-sans)]">
           <section className="w-full flex flex-col md:flex-row gap-4 items-center justify-center">
+            <div className="flex flex-col w-full lg:max-w-[492px] lg:max-h-[700px] bg-white justify-between rounded-xl shadow-md">
+              <div>
+                <h3 className="text-2xl p-7 font-semibold text-slate-900 mb-2">
+                  Drive Your Way, On Your Terms.
+                </h3>
+              </div>
+              <div className="items-center p-4 justify-between gap-2 lg:gap-2">
+                <div className="mt-16 mb-16 relative w-full h-28">
+                  <Image
+                    src={car.imageUrl || "/default-image.png"}
+                    alt={car.name}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <Image
+                    src={"/View 2.png"}
+                    alt=""
+                    width={200}
+                    height={124}
+                    className="w-[150px] lg:w-[200px]"
+                  />
+                  <Image
+                    src={"/View 3.png"}
+                    alt=""
+                    width={200}
+                    height={124}
+                    className="w-[150px] lg:w-[200px]"
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="first flex flex-col gap-4 w-full lg:max-w-[470px] lg:max-h-[508px]">
               <div>
                 <div className="max-w-md lg:max-h-[700px] p-6 bg-white lg:-mt-3 rounded-xl shadow-md">
@@ -133,48 +164,13 @@ export default async function CarDetailPage({
                         </p>
                       </div>
 
-                      {/* <Link href={"/payment"}>
-                       */}
-                       <Link href={`/payment/${id}`}>
+                      <Link href={`/payment/${id}`}>
                         <button className="lg:px-10 lg:py-4 px-4 py-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
                           Rent Now
                         </button>
                       </Link>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col w-full lg:max-w-[492px] lg:max-h-[700px] bg-white justify-between rounded-xl shadow-md">
-              <div>
-                <h3 className="text-2xl p-7 font-semibold text-slate-900 mb-2">
-                  Drive Your Way, On Your Terms.
-                </h3>
-              </div>
-              <div className="items-center p-4 justify-between gap-2 lg:gap-2">
-                <div className="mt-16 mb-16 relative w-full h-28">
-                  <Image
-                    src={car.imageUrl || "/default-image.png"}
-                    alt={car.name}
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Image
-                    src={"/View 2.png"}
-                    alt=""
-                    width={200}
-                    height={124}
-                    className="w-[150px] lg:w-[200px]"
-                  />
-                  <Image
-                    src={"/View 3.png"}
-                    alt=""
-                    width={200}
-                    height={124}
-                    className="w-[150px] lg:w-[200px]"
-                  />
                 </div>
               </div>
             </div>
