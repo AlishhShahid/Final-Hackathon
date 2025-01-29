@@ -37,7 +37,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ params }) => {
   const { id } = params;
 
   const [carDetails, setCarDetails] = useState<CarDetail | null>(null);
-  const [products, setProducts] = useState<Product[]>([]);
+  const [setProducts] = useState<Product[]>([]);
   const [pickupLocation, setPickupLocation] = useState("Saddar-Town");
   const [pickupDate, setPickupDate] = useState("2022-07-20");
   const [pickupTime, setPickupTime] = useState("07:00");
