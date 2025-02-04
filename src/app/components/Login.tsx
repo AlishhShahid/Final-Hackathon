@@ -5,13 +5,12 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from '@/app/components/ui/input'; // Shadcn UI
+import { Input } from '@/app/components/ui/input'; 
 import { Button } from '@/app/components/ui/button';
 import { Label } from '@/app/components/ui/label';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/app/components/ui/card";
-import { FaEnvelope, FaLock } from 'react-icons/fa'; // Icons
+import { FaEnvelope, FaLock } from 'react-icons/fa'; 
 
-// Zod validation schema
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters').max(20, 'Password must not exceed 20 characters'),
@@ -36,12 +35,12 @@ export default function LoginPage() {
       });
 
       if (res.ok) {
-        router.push('/'); // Redirect after login
+        router.push('/'); 
       } else {
         const response = await res.json();
         setError(response.error || 'Invalid email or password.');
       }
-    } catch (err) {
+    } catch (error) {
       setError('Something went wrong. Please try again.');
     }
   };
@@ -56,7 +55,7 @@ export default function LoginPage() {
         
         <form onSubmit={handleSubmit(onSubmit)} className="px-6">
           <CardContent className="space-y-4">
-            {/* Email Input */}
+           
             <div className="space-y-2">
               <Label htmlFor="email" className="text-lg">Email</Label>
               <div className="relative">
@@ -66,7 +65,6 @@ export default function LoginPage() {
               {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
             </div>
 
-            {/* Password Input */}
             <div className="space-y-2">
               <Label htmlFor="password" className="text-lg">Password</Label>
               <div className="relative">
@@ -76,7 +74,6 @@ export default function LoginPage() {
               {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
             </div>
 
-            {/* General Error Message */}
             {error && <p className="mt-2 text-sm text-red-500 text-center">{error}</p>}
           </CardContent>
 
