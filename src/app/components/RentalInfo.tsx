@@ -157,12 +157,12 @@ export default function RentalInfo() {
 
             <div>
               <div className="flex-1">
-                <label className="text-gray-900 font-medium ">Time</label>
+                <label className="text-gray-900 font-medium block mb-1">Time</label>
                 <input
                   type="time"
                   value={pickupTime}
                   onChange={handlePickupTimeChange}
-                  className="w-full border rounded-md text-gray-500 p-2 mt-1"
+                  className="w-full border rounded-md  bg-gray-50 text-gray-500 p-2 mt-1"
                 />
               </div>
             </div>
@@ -219,12 +219,12 @@ export default function RentalInfo() {
             </div>
             <div>
               <div className="flex-1">
-                <label className="text-gray-900 font-medium">Time</label>
+                <label className="text-gray-900 font-medium block mb-1">Time</label>
                 <input
                   type="time"
                   value={dropoffTime}
                   onChange={handleDropoffTimeChange}
-                  className="w-full border text-gray-500 rounded-md p-2 mt-1"
+                  className="w-full border  bg-gray-50 text-gray-500 rounded-md p-2 mt-1"
                   disabled={!pickupTime}
                 />
               </div>
