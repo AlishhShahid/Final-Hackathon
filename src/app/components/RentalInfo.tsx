@@ -125,7 +125,7 @@ export default function RentalInfo() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold mb-1 ">Locations</label>
+              <label className="block text-gray-900 font-medium mb-1 ">Locations</label>
               <select
                 name="pickUpLocation"
                 value={formData.pickUpLocation}
