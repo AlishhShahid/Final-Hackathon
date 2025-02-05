@@ -93,18 +93,7 @@ export default function RentalInfo() {
   const getMinDate = () => {
     return new Date().toISOString().split("T")[0];
   };
-
-  const getMinTime = (date: string) => {
-    if (date === new Date().toISOString().split("T")[0]) {
-      return new Date().toLocaleTimeString("en-US", {
-        hour12: false,
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-    }
-    return "00:00";
-  };
-
+  
   return (
     <div className="bg-gray-100 flex p-4">
       <form
