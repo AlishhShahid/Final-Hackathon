@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 export default function RentalInfo() {
   const [formData, setFormData] = useState({
@@ -14,6 +14,7 @@ export default function RentalInfo() {
 
   const [dropoffTime, setDropoffTime] = useState("");
   const [pickupTime, setPickupTime] = useState("");
+  const [rentalDuration, setRentalDuration] = useState("");
   const [errors, setErrors] = useState({
     pickUpDate: "",
     pickUpTime: "",
@@ -29,6 +30,27 @@ export default function RentalInfo() {
 
     // Clear errors when user changes the input
     setErrors({ ...errors, [name]: "" });
+  };
+
+  const calculateRentalDuration = () => {
+    if (formData.pickUpDate && formData.dropOffDate) {
+      const pickUpDateTime = new Date(
+        `${formData.pickUpDate}T${formData.pickUpTime}`
+      );
+      const dropOffDateTime = new Date(
+        `${formData.dropOffDate}T${formData.dropOffTime}`
+      );
+
+      if (dropOffDateTime > pickUpDateTime) {
+        const diffTime = Math.abs(
+          dropOffDateTime.getTime() - pickUpDateTime.getTime()
+        );
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        setRentalDuration(`${diffDays} day(s)`);
+      } else {
+        setRentalDuration("");
+      }
+    }
   };
 
   const validateForm = () => {
@@ -75,25 +97,40 @@ export default function RentalInfo() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
+      calculateRentalDuration();
       console.log("Form submitted:", formData);
-      alert("Form submitted successfully!");
+      const pickUpDateTime = new Date(
+        `${formData.pickUpDate}T${formData.pickUpTime}`
+      );
+      const dropOffDateTime = new Date(
+        `${formData.dropOffDate}T${formData.dropOffTime}`
+      );
+      const diffTime = Math.abs(
+        dropOffDateTime.getTime() - pickUpDateTime.getTime()
+      );
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      alert(
+        `Form submitted successfully! Rental Duration:  ${diffDays} day(s)`
+      );
     } else {
       console.log("Form has errors");
     }
   };
 
-  const handlePickupTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPickupTime(e.target.value);
-  };
+  function handlePickupTimeChange(event: ChangeEvent<HTMLInputElement>): void {
+    setPickupTime(event.target.value);
+    setFormData({ ...formData, pickUpTime: event.target.value });
+  }
 
-  const handleDropoffTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDropoffTime(e.target.value);
-  };
+  function handleDropoffTimeChange(event: ChangeEvent<HTMLInputElement>): void {
+    setDropoffTime(event.target.value);
+    setFormData({ ...formData, dropOffTime: event.target.value });
+  }
 
   const getMinDate = () => {
     return new Date().toISOString().split("T")[0];
   };
-  
+
   return (
     <div className="bg-gray-100 flex p-4">
       <form
@@ -125,7 +162,9 @@ export default function RentalInfo() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-900 font-medium mb-1 ">Locations</label>
+              <label className="block text-gray-900 font-medium mb-1 ">
+                Locations
+              </label>
               <select
                 name="pickUpLocation"
                 value={formData.pickUpLocation}
@@ -157,12 +196,14 @@ export default function RentalInfo() {
 
             <div>
               <div className="flex-1">
-                <label className="text-gray-900 font-medium block mb-1">Time</label>
+                <label className="text-gray-900 font-medium block mb-1">
+                  Time
+                </label>
                 <input
                   type="time"
                   value={pickupTime}
                   onChange={handlePickupTimeChange}
-                  className="w-full border rounded-md  bg-gray-50 text-gray-500 p-2 mt-1"
+                  className="w-full border rounded-md bg-gray-50 text-gray-500 p-2 mt-1"
                 />
               </div>
             </div>
@@ -219,12 +260,14 @@ export default function RentalInfo() {
             </div>
             <div>
               <div className="flex-1">
-                <label className="text-gray-900 font-medium block mb-1">Time</label>
+                <label className="text-gray-900 font-medium block mb-1">
+                  Time
+                </label>
                 <input
                   type="time"
                   value={dropoffTime}
                   onChange={handleDropoffTimeChange}
-                  className="w-full border  bg-gray-50 text-gray-500 rounded-md p-2 mt-1"
+                  className="w-full border bg-gray-50 text-gray-500 rounded-md p-2 mt-1"
                   disabled={!pickupTime}
                 />
               </div>
@@ -240,11 +283,13 @@ export default function RentalInfo() {
             Submit
           </button>
         </div>
+
+        {rentalDuration && (
+          <div className="mt-4 p-3 bg-blue-100 text-blue-700 font-medium rounded-md">
+            Rental Duration: {rentalDuration}
+          </div>
+        )}
       </form>
     </div>
   );
 }
-
-// function setPickupTime(value: string) {
-//   throw new Error("Function not implemented.");
-// }
