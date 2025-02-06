@@ -5,7 +5,6 @@ import BillingInfo from "@/app/components/BillingInfo";
 import RentalInfo from "@/app/components/RentalInfo";
 import Payment from "@/app/components/Payment";
 import Image from "next/image";
-import Link from "next/link";
 import sanityClient from "@sanity/client";
 import { notFound } from "next/navigation";
 
@@ -121,14 +120,12 @@ export default function PaymentPage({ params }: { params: { id: string } }) {
                   I agree with our terms and conditions and privacy policy.
                 </span>
               </label>
-              <Link href={`/dashboard/${id}`}>
                 <button
                   type="submit"
                   className="px-4 mt-8 bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 mb-2"
                 >
                   Rent Now
-                </button>
-              </Link>
+                </button>     
             </form>
           </div>
         </div>
